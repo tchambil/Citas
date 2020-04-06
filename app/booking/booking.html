@@ -1,0 +1,39 @@
+<section class="page">
+    <section class="ui-section">
+        <div class="clearfix">
+            <span class="color-1">|</span> <label>Registrar Reserva:</label>
+        </div>
+        <div class="divider-sm"></div>
+        <md-content class="md-padding">
+            <form name="booking" ng-submit="$event.preventDefault()">
+              <div class="row-fluid">
+                <div class="col-xs-12">
+                  <md-input-container class="full-width">
+                    <label>Día de Reservación</label>
+                    <md-select name="DaysBookings" ng-model="bookingCtrl.selectDay" ng-change="bookingCtrl.selectedItemChange()" required="">
+                      <md-option ng-repeat="time in bookingCtrl.listDays" value="{{time.value}}">{{time.display}}</md-option>
+                    </md-select>
+                    <div class="errors" ng-messages="booking.DaysBookings.$error">
+                      <div ng-message="required">Selecciona un Día</div>
+                    </div>
+                  </md-input-container>
+                </div>
+                <div class="col-xs-12">
+                  <md-input-container class="full-width">
+                    <label>Hora de la Reserva</label>
+                    <md-select name="HoursBookings" ng-model="bookingCtrl.selectTime" required="">
+                      <md-option ng-repeat="time in bookingCtrl.listRanges" value="{{time.value}}">{{time.display}}</md-option>
+                    </md-select>
+                    <div class="errors" ng-messages="booking.HoursBookings.$error">
+                      <div ng-message="required">Selecciona una hora</div>
+                    </div>
+                  </md-input-container>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                  <md-button class="md-raised btn-w-sm md-primary" ng-click="bookingCtrl.save();">Agendar</md-button>
+              </div>
+            </form>
+        </md-content>
+    </section>
+</section>

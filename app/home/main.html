@@ -1,0 +1,12 @@
+<div style="height: 80vh; display:flex; flex-direction: column; justify-content: space-around; align-items: stretch;"
+  class="background-color-2">
+  <div style="height: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+    ng-repeat="service in mainCtrl.services" ng-click="mainCtrl.navigateTo($index)">
+    <img style="height: 8em;" ng-src="{{service.icon}}" alt="">
+    <br>
+    <label>
+      <span class="color-1">| </span>{{service.name}}
+      <span class="color-1"> |</span>
+    </label>
+  </div>
+</div>

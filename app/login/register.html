@@ -1,0 +1,83 @@
+<style>
+.btn-primary {
+    color: #fff;
+    background-color: #eb1e23;
+    border-color: #eb1e23;
+}
+</style>
+<!-- <script src='https://www.google.com/recaptcha/api.js??onload=onloadCallback&render=explicit  async defer'></script> -->
+<div class="page-signup">
+    <div class="">
+        <div class="main-body">
+
+            <div class="body-inner">
+                <section class="logo text-center">
+
+                    <img src="./assets/images/logo.png" style="height: 2.5em;">
+
+                </section>
+                <div class="card bg-white space-top">
+                    <div class="card-content">
+
+                        <form class="form-horizontal" name="registerForm">
+                            <fieldset>
+                                <md-input-container class="full-width">
+                                    <label>Tipo Documento</label>
+                                    <md-select ng-model="registerCtrl.selectTypeDocument" aria-label="select" ng-change="registerCtrl.changeMask()">
+                                        <md-option ng-repeat="typeDocument in registerCtrl.listTypeDocument" ng-value="typeDocument" ng-selected="{{typeDocument.id === registerCtrl.selectTypeDocument.id}}">
+                                            {{typeDocument.name}} </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <input type="text" id="documento" ng-maxlength={{vm.maxlenght}} ng-model="registerCtrl.document" class="form-control" ui-mask="{{registerCtrl.inputMask}}"
+                                            ui-mask-placeholder-char="space" mask-limit="true" ng-required="{{registerCtrl.documentrequired}}">
+                                        <label>N° Documento</label>
+                                    </div>
+                                </div>
+								   <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <input type="text" ng-model="registerCtrl.username" ng-minlength="3" class="form-control" required>
+                                        <span class="input-bar"></span>
+                                        <label>Nombres y Apellidos</label>
+                                    </div>
+                                </div>
+								    <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <input type="email" id="email" ng-model="registerCtrl.email" class="form-control" 
+                                            ui-mask-placeholder-char="space" mask-limit="true" ng-required="true">
+                                        <span class="input-bar"></span>
+                                        <label>Correo Electrónico</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <input type="text" id="cellphone" ng-model="registerCtrl.cellphone" class="form-control" ui-mask="{{registerCtrl.inputMaskCellphone}}"
+                                            ui-mask-placeholder-char="space" mask-limit="true" ng-required="true">
+                                        <span class="input-bar"></span>
+                                        <label>N° Celular</label>
+                                    </div>
+                                </div>
+                             
+                                <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <span class="msg-error error"></span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="text-right">
+                                                    <md-button class="btn btn-primary" ng-disabled="registerForm.$invalid" ng-click="registerCtrl.login();">Login</md-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

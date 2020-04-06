@@ -1,0 +1,60 @@
+<div style="height: 80vh;" class="background-color-2">
+
+    <div map-lazy-load="http://maps.google.com/maps/api/js?key={{ticketCtrl.keyGoogleMaps}}">
+        <map id="gmap" style="height: 65vh;" zoom="14" center="[{{ticketCtrl.latitude}}, {{ticketCtrl.longitude}}]" scrollwheel="false">
+            <marker id='{{branch.id}}' icon="{{branch.icon}}" position="{{branch.latitude}}, {{branch.longitude}}" ng-repeat="branch in ticketCtrl.listBranchs"
+                title="{{branch.name}}" animation="Animation.DROP" on-click="ticketCtrl.showDetail(event, branch);">
+            </marker>
+            <info-window id="foo-iw" visible-on-marker="{{ticketCtrl.branch.id}}">
+                <div class="info-window" ng-non-bindable="">
+                    <b>{{ticketCtrl.branch.name}}</b>
+                    <div class="divider-sm"></div>
+                    <span>{{ticketCtrl.branch.address}}</span>
+                    <div class="divider-sm"></div>
+
+                    <div ng-if="ticketCtrl.branch.status !== 'INACTIVE'">
+
+                        <div class="divider-sm"></div>
+                        <span ng-show="ticketCtrl.branch.congestion === 'LOW'">
+                            <b class="congestion-low">Congesti&oacute;n Baja
+                            </b>
+                        </span>
+                        <span ng-show="ticketCtrl.branch.congestion === 'MEDIUM'">
+                            <b class="congestion-medium">Congesti&oacute;n Media
+                            </b>
+                        </span>
+                        <span ng-show="ticketCtrl.branch.congestion === 'HIGH'">
+                            <b class="congestion-high">Congesti&oacute;n Alta
+                            </b>
+                        </span>
+                        <div class="divider-sm"></div>
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <md-button class="md-raised btn-w-sm md-primary" style="text-transform:none;margin-right: 60px;" ng-click="ticketCtrl.clicked(ticketCtrl.branch);">Generar Ticket
+                            </md-button>
+                        </div>
+                    </div>
+                    <span ng-if="ticketCtrl.branch.status === 'INACTIVE'">No disponible en este momento</span>
+                </div>
+            </info-window>
+        </map>
+    </div>
+
+    <div style="height: 15vh; display: flex; flex-direction: row; justify-content: space-around; align-items: center;" class="background-color-2">
+        <div style="text-align: center;">
+            <img src="./assets/map/map-marker-green.png" height="25px" />
+            <label>Tiempo de espera bajo </label>
+        </div>
+        <div style="text-align: center;">
+            <img src="./assets/map/map-marker-yellow.png" height="25px" />
+            <label>Tiempo de espera medio</label>
+        </div>
+        <div style="text-align: center;">
+            <img src="./assets/map/map-marker-red.png" height="25px" />
+            <label>Tiempo de espera alto</label>
+        </div>
+        <div style="text-align: center;">
+            <img src="./assets/map/map-marker-gray.png" height="25px" />
+            <label>No disponible</label>
+        </div>
+    </div>
+</div>

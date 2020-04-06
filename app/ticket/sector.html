@@ -1,0 +1,14 @@
+<section class="page">
+    <section class="ui-section">
+      <div class="clearfix">
+        <h2 class="section-header">Seleccione un sector:</h2>
+      </div>
+      <div class="card bg-white" ng-click="sectorCtrl.navigateTo(sector.id)" ng-repeat="sector in sectorCtrl.listSertors">
+          <div class="card-content">
+              <span class="card-title">
+                <md-icon class="material-icons icon-color">assignment_ind</md-icon>
+                &nbsp;{{sector.name}}</span>
+          </div>
+      </div>
+    </section>
+</section>

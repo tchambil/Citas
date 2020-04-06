@@ -1,0 +1,19 @@
+<section class="page">
+    <section class="ui-section">
+      <div class="clearfix">
+        <span class="color-1">|</span> <label>Seleccione una Agencia:</label>
+      </div>
+      <div class="card bg-white" ng-click="branchCtrl.navigateTo(branch,$event)" ng-repeat="branch in branchCtrl.listBranchs">
+          <div class="card-content">
+              <div class="card-title">
+                <i class="fa fa-home icon-color color-1" aria-hidden="true"></i>
+                <span>&nbsp;{{branch.name}}</span><!--short_name-->
+              </div>
+              <div class="card-content">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>&nbsp;{{branch.address}}</span>
+              </div>
+          </div>
+      </div>
+    </section>
+</section>

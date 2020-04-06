@@ -1,0 +1,103 @@
+<div style="height: 80vh; display:flex; flex-direction: column; align-items: center;" class="background-color-2"
+  ng-show="serviceCtrl.serviceLevel === 2">
+  <div style="height: 25%; display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+    <img style="height: 8em;" src="./assets/icons/seleccion-servicio.jpg" alt="">
+  </div>
+
+  <div style="height: 75%; width: 100%; border-top-left-radius: 50%; border-top-right-radius: 50%;"
+    class="background-color-3">
+
+    <div
+      style="height: 25%; display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+      <label>
+        <span class="color-1">| </span>Seleccionar Servicio
+        <span class="color-1"> |</span>
+      </label>
+    </div>
+
+    <div style="height: 75%; display: flex; flex-direction: column; justify-content: start; align-items: center;">
+      <div style="margin-bottom: 3em;" ng-repeat="service in serviceCtrl.services">
+        <button type="button" style="height: 3em; width: 15em; border-style: none; border-radius: 2em;"
+          class="color-2 background-color-1" ng-click="serviceCtrl.navigateTo($index)">{{service.name}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="height: 80vh; display:flex; flex-direction: column;" class="background-color-2"
+  ng-show="serviceCtrl.serviceLevel === 1">
+  <div style="height: 15%;" class="background-color-1">
+    <h4 style="text-align: center; margin-top: 2em;" class="color-2">Seleccionar operación a realizar</h4>
+  </div>
+
+  <div
+    style="height: 85%; display: flex; flex-direction: row; justify-content: space-around; align-items: stretch; flex-wrap: wrap;">
+    <div style=" width: 10em; display:flex; flex-direction: column; justify-content: space-around; align-items: center;"
+      ng-repeat="service in serviceCtrl.services">
+      <div ng-if="service.enabled"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
+        ng-click="serviceCtrl.navigateTo($index)">
+        <div
+          style="height: 8em; width: 8em; border-radius: 50%; display:flex; flex-direction: column; justify-content: center; align-items: center;"
+          class="background-color-2">
+          <div
+            style="height: 7em; width: 7em; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+            class="general-shadow background-color-2">
+            <img style="height: 3em" ng-src="{{service.icon}}" alt="">
+          </div>
+        </div>
+        <br>
+        <label style="text-align: center;">{{service.name}}</label>
+      </div>
+      <div ng-if="!service.enabled"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0.5;">
+        <md-tooltip>{{service.message}}</md-tooltip>
+        <div
+          style="height: 8em; width: 8em; border-radius: 50%; display:flex; flex-direction: column; justify-content: center; align-items: center;"
+          class="background-color-2">
+          <div
+            style="position:relative; height: 7em; width: 7em; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+            class="general-shadow background-color-2">
+            <img style="position: abosolute; height: 3em;" ng-src="{{service.icon}}" alt="">
+            <div
+              style="position: absolute; height: 7em;width: 7em;border-radius: 50%;z-index: 1;background-color: gray;opacity: 0.5;">
+            </div>
+          </div>
+        </div>
+        <br>
+        <label style="text-align: center;">{{service.name}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  style="height: 80vh; display:flex; flex-direction: column; justify-content: flex-end; align-items: center; position: relative; "
+  ng-show="serviceCtrl.serviceLevel === 3">
+
+  <div style="height: 50%; width: 100%; position: absolute; z-index: -1; top: 0;" class="background-color-1">
+    <h4 style="text-align: center; margin-top: 2em;" class="color-2">Seleccionar operación a realizar</h4>
+  </div>
+
+  <div style="height: 50%; width: 100%; position: absolute; z-index: -1; bottom: 0;" class="background-color-2">
+  </div>
+
+  <div
+    style="height: 70%; width: 80%; margin-bottom: 1.5em; border-radius: 2em; display: flex; flex-direction: row; justify-content: space-around; align-items: stretch; flex-wrap: wrap;"
+    class="background-color-3">
+
+    <div style="width: 45%; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+      ng-repeat="service in serviceCtrl.services" ng-click="serviceCtrl.navigateTo($index)">
+
+      <div
+        style="height: 5em; width: 5em;border-radius: 50%; display:flex; flex-direction: column; justify-content: center; align-items: center;"
+        class="background-color-2">
+        <img style="height: 2.3em" ng-src="{{service.icon}}" alt="">
+      </div>
+      <br>
+      <label style="text-align: center;">{{service.name}}</label>
+
+    </div>
+
+  </div>
+</div>

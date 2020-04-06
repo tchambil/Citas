@@ -1,0 +1,113 @@
+<div style="height: 80vh; display: flex; flex-direction: column;" class="background-color-2">
+
+  <div style="height: 40%; display: flex; flex-direction: row; justify-content: space-around; ">
+
+    <div
+      style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; margin-top: 2em;">
+      <div style="width: 5.5em; border-radius: 2em; text-align: center;" class="background-color-1 color-2">
+        {{ticketSummaryCtrl.ticket.position}}
+      </div>
+      <br>
+      <i class="fa fa-group fa-3x" aria-hidden="true"></i>
+      <br>
+      <label style="text-align: center;">Personas
+        <br>Restantes</label>
+    </div>
+
+    <div
+      style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; margin-top: 2em;">
+      <div style="width: 5.5em; border-radius: 2em; text-align: center;" class="background-color-1 color-2">
+        {{ticketSummaryCtrl.ticket.low_estimated_time}} - {{ticketSummaryCtrl.ticket.high_estimated_time}} min
+      </div>
+      <br>
+      <i class="fa fa-clock-o fa-3x" aria-hidden="true"></i>
+      <br>
+      <label style="text-align: center;">Espera
+        <br>Estimada
+      </label>
+    </div>
+
+  </div>
+
+
+  <div style="height: auto; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+    <div style="height: auto; width: auto; padding: 0.5em 1em 0.5em 1em; border-radius: 2em;" class="background-color-2  general-shadow">
+
+      <div style="height: auto; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+        <md-button ng-if="ticket.status !== 'ATTENDED'" class="md-icon-button"
+          ng-click="ticketSummaryCtrl.showTimer($event,ticketSummaryCtrl.ticket)">
+          <span style="color:gray;" class="fa fa-refresh size-icon" ng-class="ticketSummaryCtrl.updateTimer"></span>
+          <md-tooltip>Actualizar Tiempo de Espera</md-tooltip>
+        </md-button>
+
+        <div>
+          <span style="border-radius: 2em;" ng-show="ticketSummaryCtrl.ticket.status === 'WAITING'"
+            class="label label-success">En espera</span>
+          <span style="border-radius: 2em;" ng-show="ticketSummaryCtrl.ticket.status === 'CALLED'"
+            class="label label-danger">Llamado</span>
+          <span style="border-radius: 2em;" ng-show="ticketSummaryCtrl.ticket.status === 'INATTENTION'"
+            class="label label-primary">En atención</span>
+          <span style="border-radius: 2em;" ng-show="ticketSummaryCtrl.ticket.status === 'ATTENDED'"
+            class="label label-default">Atendido</span>
+        </div>
+
+        <md-button ng-if="ticketSummaryCtrl.ticket.status === 'WAITING'" class="md-icon-button"
+          ng-click="ticketSummaryCtrl.cancelTicket($event,ticketSummaryCtrl.ticket)">
+          <span style="color:gray;" class="fa fa-trash size-icon"></span>
+          <md-tooltip>Cancelar Ticket</md-tooltip>
+        </md-button>
+      </div>
+
+      <div style="height: 65%; display: flex; flex-direction: row;">
+
+        <div style="width: 100%; margin-left: 10%; margin-right: 10%;">
+          <div ng-repeat="print in ticketSummaryCtrl.printTicket">
+            <div ng-if="print.content === ''" class="row line-white">
+            </div>
+            <div class="row" ng-if="print.content !== ''"
+              ng-class="{'alignment-left':print.align === 'LEFT', 'alignment-center':print.align === 'CENTER', 'alignment-right':print.align === 'RIGHT'}">
+              <div ng-switch="print.font">
+                <span ng-switch-when="A_REGULAR" class="type-A">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="B_REGULAR" class="type-B">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="A_DOUBLE_HIGH" class="type-A-double-high">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="B_DOUBLE_HIGH" class="type-B-double-high">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="A_DOUBLE_WIDTH" class="type-A-double-width">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="B_DOUBLE_WIDTH" class="type-B-double-width">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="A_QUADRUPLE" class="type-A-quadruple">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="B_QUADRUPLE" class="type-B-quadruple">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="C_DOUBLE_HIGH" class="type-C-double-high">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-when="C_DOUBLE_WIDTH" class="type-C-double-width">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+                <span ng-switch-default class="type-C-quadruple">
+                  {{print.previous}}{{print.content}}{{print.next}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

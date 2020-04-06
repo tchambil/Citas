@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" manifest="manifest.appcache">
+
+<head>
+    <meta charset="utf-8">
+    <title>citas</title>
+    <meta name="description" content="Citas Scotiabank">
+    <meta name="keywords" content="Citas Scotiabank">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <!-- google fonts -->
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Roboto:100,300,400,400italic,500,700:latin'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = 'bower_components/webfontloader/webfontloader.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <style type="text/css">
+        body {
+            position: fixed;
+            width: 100%;
+            height: 100%; // overflow: hidden;
+        }
+    </style>
+
+    <!-- Needs images, font... therefore can not be part of main.css -->
+    <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="vendors/material-design-icons/iconfont/material-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+    <!-- end Needs images -->
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- Estilo propio -->
+    <link rel="stylesheet" href="styles/style-configuration.css">
+
+</head>
+
+<body data-ng-app="app" id="app" class="app" data-custom-page data-ng-controller="AppCtrl" data-ng-class=" { 'layout-boxed': main.layout === 'boxed',
+                            'nav-collapsed-min': main.isMenuCollapsed }">
+    <div id="loader-container"></div>
+
+    <header data-ng-include=" 'app/layout/header.html' " id="header" class="header-container bg-success" data-ng-class="{ 'header-fixed': main.fixedHeader }"></header>
+
+    <div class="main-container" data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
+        <aside data-ng-include=" 'app/layout/sidebar.html' " id="nav-container" class="nav-container bg-dark" style="height: 100%; height: 100%;top: 104px;"
+            data-ng-class="{ 'nav-fixed': main.fixedSidebar,
+                                    'nav-horizontal': main.menu === 'horizontal',
+                                    'nav-vertical': main.menu === 'vertical' }">
+        </aside>
+
+        <div id="content" class="content-container" style="margin-top: 40px;">
+            <section data-ui-view class="view-container animate-fade-up"></section>
+        </div>
+
+    </div>
+
+
+    <script src="scripts/vendor.js"></script>
+
+
+    <script src="scripts/ui.js"></script>
+
+
+    <script src="scripts/app.js"></script>
+	
+</body>
+
+</html>

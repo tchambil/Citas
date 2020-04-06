@@ -1,0 +1,83 @@
+<section class="page">
+    <section class="ui-section">
+        <md-progress-linear ng-show="bookingsCtrl.progress" md-mode="indeterminate"></md-progress-linear>
+        <div class="clearfix">
+            <span class="color-1">|</span> <label>Mis reservas:</label>
+        </div>
+        <div class="callout callout-info" ng-show="bookingsCtrl.listBranchs === null">No tiene reservas generadas.</div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4" ng-repeat="booking in bookingsCtrl.listBranchs">
+                <div class="quote-container">
+                    <i class="pin"></i>
+                    <blockquote class="note background-color-2">
+
+                        <div ng-if="booking.status === 'ACTIVE'" class="row">
+                            <div class="col-xs-9">
+                                <label class="highlighter-1" style="font-size: 0.8em;">Toque el ticket para activar su
+                                    reserva</label>
+                            </div>
+                            <div class="col-xs-3">
+                                <md-button class="md-icon-button" ng-click="bookingsCtrl.generateTicket(booking)">
+                                    <span class="fa fa-ticket size-icon rotate highlighter-2"
+                                        style="font-size: 2em;"></span>
+                                    <md-tooltip>Activar Reserva</md-tooltip>
+                                </md-button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="color-1">Agencia</label>
+                                <p>{{booking.branch.name}}</p>
+                            </div>
+                            <div class="col-xs-3">
+                                <label class="color-1">Servicio</label>
+                                <p>{{booking.service.name}}</p>
+                            </div>
+                            <div class="col-xs-3">
+                                <md-button ng-if="booking.status === 'INACTIVE'" class="md-icon-button"
+                                    ng-click="bookingsCtrl.cancelBooking($event,booking)">
+                                    <span class="fa fa-trash size-icon"></span>
+                                    <md-tooltip>Cancelar Reserva</md-tooltip>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="color-1">Estado</label>
+                                <p ng-show="booking.status === 'INACTIVE'">Inactivo</p>
+                                <p ng-show="booking.status === 'ACTIVE'">Activo</p>
+                                <p ng-show="booking.status === 'DEFEATED'">Vencido</p>
+                                <p ng-show="booking.status === 'USED'">Usado</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="color-1">Fecha</label>
+                                <p>{{bookingsCtrl.getFechBookings(booking.start_time)}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="color-1">Desde</label>
+                                <p>{{bookingsCtrl.getHoraBookings(booking.start_time)}}</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="color-1">Hasta</label>
+                                <p>{{bookingsCtrl.getHoraBookings(booking.end_time)}}</p>
+                            </div>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<div class="md-padding actionButtons btn-float-next" layout="column">
+    <md-fab-speed-dial md-open="false" md-direction="up" class="md-scale md-fab-bottom-right md-hover-full speed-dial">
+        <md-fab-trigger>
+            <md-button aria-label="menu" class="md-fab md-warn" style="background-color: #333;"
+                ng-click="bookingsCtrl.addBooking();">
+                <md-icon class="material-icons">add</md-icon>
+            </md-button>
+        </md-fab-trigger>
+    </md-fab-speed-dial>
+</div>
